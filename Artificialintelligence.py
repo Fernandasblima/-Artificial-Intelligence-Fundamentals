@@ -1,10 +1,7 @@
-# artificial_intelligent_save_plots.py
-# -*- coding: utf-8 -*-
 
 import os
-# For environments without display, force a non-interactive backend BEFORE pyplot import
 import matplotlib
-matplotlib.use('Agg')  # usa backend que salva arquivos em vez de abrir janelas
+matplotlib.use('Agg')  
 
 import pandas as pd
 import networkx as nx
@@ -12,10 +9,8 @@ import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 
-# garante pasta para salvar imagens
 os.makedirs('docs', exist_ok=True)
 
-# Dados
 dados = {
     'bairro': ['Centro', 'Jardim', 'Industrial', 'São Pedro', 'Vila Nova', 'Alvorada', 'Santa Clara', 'Bela Vista', 'Rosário', 'Cruzeiro'],
     'x': [5, 7, 3, 8, 2, 9, 1, 6, 4, 10],
@@ -25,7 +20,7 @@ df = pd.DataFrame(dados)
 print("Dataframe carregado:")
 print(df)
 
-# Criar grafo
+#  grafo
 def criar_grafo():
     G = nx.Graph()
     conexoes = [
@@ -78,7 +73,7 @@ def mostrar_rota_salvar(origem, destino, filename='docs/rota.png'):
     plt.close()
     print(f"Figura salva em: {filename}")
 
-# K-Means e salvar imagem do agrupamento
+# K-Means 
 def aplicar_kmeans_salvar(n_clusters=3, filename='docs/cluster.png'):
     kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
     df['cluster'] = kmeans.fit_predict(df[['x', 'y']])
@@ -97,7 +92,7 @@ def aplicar_kmeans_salvar(n_clusters=3, filename='docs/cluster.png'):
     plt.close()
     print(f"Figura do agrupamento salva em: {filename}")
 
-# Aplicar A* dentro de cada cluster e salvar prints simples em arquivo texto (opcional)
+# A*
 def a_star_por_cluster_salvar():
     G = criar_grafo()
     relatorio = []
@@ -112,12 +107,12 @@ def a_star_por_cluster_salvar():
                 relatorio.append(f"  {origem} → {destino}: {caminho} | Tempo: {tempo} min")
             else:
                 relatorio.append(f"  {origem} → {destino}: Sem caminho disponível")
-    # salvar relatório
+  
     with open('docs/relatorio_clusters.txt', 'w', encoding='utf-8') as f:
         f.write('\n'.join(relatorio))
     print("Relatório dos caminhos por cluster salvo em: docs/relatorio_clusters.txt")
 
-# Execução
+
 if __name__ == "__main__":
     mostrar_rota_salvar('Cruzeiro', 'Vila Nova', filename='docs/rota_cruzeiro_vilanova.png')
     aplicar_kmeans_salvar(n_clusters=3, filename='docs/cluster.png')
