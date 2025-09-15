@@ -1,0 +1,13 @@
+
+Cluster 1 - Bairros: ['Centro', 'Bela Vista', 'Rosário']
+  Centro → Bela Vista: ['Centro', 'Rosário', 'Cruzeiro', 'Bela Vista'] | Tempo: 12 min
+  Centro → Rosário: ['Centro', 'Rosário'] | Tempo: 6 min
+
+Cluster 0 - Bairros: ['Jardim', 'São Pedro', 'Alvorada', 'Cruzeiro']
+  Jardim → São Pedro: ['Jardim', 'São Pedro'] | Tempo: 4 min
+  Jardim → Alvorada: ['Jardim', 'São Pedro', 'Alvorada'] | Tempo: 11 min
+  Jardim → Cruzeiro: ['Jardim', 'Centro', 'Rosário', 'Cruzeiro'] | Tempo: 13 min
+
+Cluster 2 - Bairros: ['Industrial', 'Vila Nova', 'Santa Clara']
+  Industrial → Vila Nova: ['Industrial', 'Vila Nova'] | Tempo: 6 min
+  Industrial → Santa Clara: ['Industrial', 'Vila Nova', 'Santa Clara'] | Tempo: 11 min
